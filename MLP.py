@@ -125,14 +125,14 @@ def estimate_loss(model, data, context_length, batch_size, eval_iters=100):
 if __name__ == "__main__":
     # Hyperparameters
     batch_size = 64
-    max_iters = 5000
+    max_iters = 50000
     eval_interval = 500
-    learning_rate = 1e-3
+    learning_rate = 3e-3
     
     # Model hyperparameters
-    context_length = 8      # Look at 8 previous characters
-    embed_dim = 24          # Size of token embeddings
-    hidden_dim = 128        # Size of hidden layers
+    context_length = 16      # Look at 8 previous characters
+    embed_dim = 32          # Size of token embeddings
+    hidden_dim = 70        # Size of hidden layers
     
     # Load and encode data
     with open('Dataset/Anne_of_Green_Gables.txt', 'r', encoding='utf-8') as f:

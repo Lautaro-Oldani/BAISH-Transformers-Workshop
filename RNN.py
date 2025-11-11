@@ -106,14 +106,14 @@ if __name__ == "__main__":
     # Hyperparameters
     batch_size = 64
     num_epochs = 10
-    steps_per_epoch = 1000
-    eval_interval = 50
-    learning_rate = 1e-3
+    steps_per_epoch = 50000
+    eval_interval = 500
+    learning_rate = 3e-4
     
     # Model hyperparameters
-    context_length = 32        # RNNs can handle longer sequences
-    embed_dim = 32
-    hidden_size = 128          # RNN hidden state size
+    context_length = 16        # RNNs can handle longer sequences
+    embed_dim = 16
+    hidden_size = 174          # RNN hidden state size
     
     # Load and encode data
     with open('Dataset/Anne_of_Green_Gables.txt', 'r', encoding='utf-8') as f:
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     decode = lambda l: ''.join([itos[i] for i in l])
     
     data = torch.tensor(encode(text), dtype=torch.long)
-    n = int(0.9 * len(data))
+    n = int(0.8 * len(data))
     train_data = data[:n]
     val_data = data[n:]
     
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     print(f"Hidden size: {hidden_size}")
     
     # TODO: Create model
-    model = RNNLanguageModel(vocab_size, context_length, embed_dim)
+    model = RNNLanguageModel(vocab_size, embed_dim, hidden_size)
     
     # TODO: Print parameter count
     # Hint: sum(p.numel() for p in model.parameters())
